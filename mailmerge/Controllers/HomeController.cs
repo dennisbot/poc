@@ -45,7 +45,7 @@ namespace mailmerge.Controllers
         public IActionResult CreateDocument()
         {
             //Opens the Word template document
-            FileStream fileStreamPath = new FileStream(@"Data/Letter Formatting.docx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            FileStream fileStreamPath = new FileStream(@"wwwroot/Letter.docx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
             using (WordDocument document = new WordDocument(fileStreamPath, FormatType.Docx))
             {
