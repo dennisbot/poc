@@ -46,6 +46,7 @@ namespace mailmerge.Controllers
         {
             //Opens the Word template document
             FileStream fileStreamPath = new FileStream(@"Data/Letter Formatting.docx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+
             using (WordDocument document = new WordDocument(fileStreamPath, FormatType.Docx))
             {
                 string[] fieldNames = { "ContactName", "CompanyName", "Address", "City", "Country", "Phone" };
@@ -55,6 +56,7 @@ namespace mailmerge.Controllers
                 //Saves the Word document to MemoryStream
                 MemoryStream stream = new MemoryStream();
                 document.Save(stream, FormatType.Docx);
+                document.Close();
                 stream.Position = 0;
                 //Download Word document in the browser
                 return File(stream, "application/msword", "Result.docx");
