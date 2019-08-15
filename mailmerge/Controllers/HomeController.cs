@@ -56,7 +56,9 @@ namespace mailmerge.Controllers
                 //Saves the Word document to MemoryStream
                 MemoryStream stream = new MemoryStream();
                 document.Save(stream, FormatType.Docx);
-                document.Close();
+                FileStream fs = new FileStream(@"wwwroot/foo.docx", FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
+                stream.WriteTo(fs);
+                fs.Close();
                 stream.Position = 0;
                 //Download Word document in the browser
                 return File(stream, "application/msword", "Result.docx");
